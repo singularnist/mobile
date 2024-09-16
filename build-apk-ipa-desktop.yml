@@ -63,6 +63,7 @@ jobs:
         java-version: '21'
 
     - name: Flutter Build APK
+      run: flutter doctor -v
       run: |
         flutter config --no-analytics
         flutter build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
