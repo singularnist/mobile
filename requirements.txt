@@ -4,3 +4,4 @@ packaging==23.2
 pandas==2.2.2
 plotly==5.24.1
 urllib3==2.2.3
+flet
