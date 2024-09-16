@@ -62,6 +62,7 @@ jobs:
     - name: Flet Build APK
       run: |
         flutter config --no-analytics
+        flutter run -d linux
         flet build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
 
     - name: Upload APK Artifact
