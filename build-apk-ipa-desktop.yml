@@ -35,26 +35,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Android SDK Platform-Tools
-      run: sdkmanager "platform-tools"
-
-    - name: Install ninja
-      run: sudo apt-get install -y ninja-build
-
-    - name: Install GTK 3.0 Development Libraries
-      run: sudo apt-get install -y libgtk-3-dev
-
     - name: Setup Flutter ${{ env.FLUTTER_VERSION }}
       uses: subosito/flutter-action@v2
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
-
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-      with:
-        api-levels: 33
-        build-tools: '35.0.0'
-        ndk: '21.4.7075529'
 
     - name: Setup Java JDK
       uses: actions/setup-java@v4.2.1
@@ -62,11 +46,10 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Flutter Build APK
-      run: flutter doctor -v
+    - name: Flet Build APK
       run: |
         flutter config --no-analytics
-        flutter build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
+        flet build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4.3.4
