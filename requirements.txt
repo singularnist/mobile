@@ -1,5 +1,4 @@
 aiohttp==3.10.5
-kaleido==0.2.1
 packaging==23.2
 pandas==2.2.2
 plotly==5.24.1
