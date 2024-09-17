@@ -61,7 +61,7 @@ jobs:
 
     - name: Flet Build APK
       run: |
-        sdkmanager --licenses
+        sdkmanager --licenses -y
         sudo -E sdkmanager --install "ndk;23.1.7779620"
         flutter config --no-analytics
         flet build apk
