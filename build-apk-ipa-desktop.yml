@@ -49,7 +49,10 @@ jobs:
     - name: Install Android SDK
       run: |
         sudo apt-get update
-        sudo apt-get install -y android-sdk adb
+        sudo apt-get install -y android-sdk adb sdkmanager
+        sdkmanager --licenses
+        sudo -E sdkmanager --install "ndk;23.1.7779620"
+        
 
     - name: Install Required Packages
       run: |
@@ -62,8 +65,7 @@ jobs:
     - name: Flet Build APK
       run: |
         flutter config --no-analytics
-        flutter run -d linux
-        flet build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
+        flet build apk
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4.3.4
