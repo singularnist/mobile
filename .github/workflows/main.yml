@@ -30,10 +30,18 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Upgrade pip and Install Python Dependencies
+    - name: Update pip
+      run: |
+        /tmp/hostpython3.11_QVFXEA/python/bin/python3 -m pip install --upgrade pip
+
+    - name: Install Build Essentials and Python Dev Tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential python3-dev libffi-dev libssl-dev
+
+    - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install meson Cython  # Install Meson and Cython for dependencies
         pip install -r requirements.txt
 
     - name: Setup Flutter ${{ env.FLUTTER_VERSION }}
@@ -47,10 +55,9 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Install Android SDK
+    - name: Install Android SDK Platform Tools
       run: |
-        sudo apt-get update
-        sudo apt-get install -y android-sdk adb sdkmanager
+        sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"
 
     - name: Install Required Packages
       run: |
