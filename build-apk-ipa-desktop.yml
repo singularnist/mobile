@@ -50,9 +50,6 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y android-sdk adb sdkmanager
-        sdkmanager --licenses
-        sudo -E sdkmanager --install "ndk;23.1.7779620"
-        
 
     - name: Install Required Packages
       run: |
@@ -64,6 +61,8 @@ jobs:
 
     - name: Flet Build APK
       run: |
+        sdkmanager --licenses
+        sudo -E sdkmanager --install "ndk;23.1.7779620"
         flutter config --no-analytics
         flet build apk
 
