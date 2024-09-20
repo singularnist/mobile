@@ -57,7 +57,7 @@ jobs:
       run: sudo apt-get install -y libgtk-3-dev
 
     - name: Accept Android Licenses
-      run: flutter doctor --android-licenses
+      run: yes | flutter doctor --android-licenses
 
 
     - name: Flet Build APK
